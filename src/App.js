@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import React from 'react'
+import Listar from './components/Listar'
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from "react-router-dom";
+import Crear from './components/Crear';
+import Editar from './components/Editar';
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Router>
+      <nav className="navbar navbar-expand navbar-light bg-light">
+        <div className="nav navbar-nav">
+          <Link className="nav-item nav-link active" to={"/"}>Sistema <span className="sr-only"></span></Link>
+          <Link className="nav-item nav-link" to={"/crear"}>Crear Empleado</Link>
+          <Link className="nav-item nav-link" to={"/editar"}>Editar Empleado</Link>
+        </div>
+      </nav>
+      <div className="container" >
+        <br></br>
+        <Route path="/" exact component={Listar} />
+        <Route path="/crear" component={Crear} />
+        <Route path="/editar/:id" component={Editar} />
+      </div>
+    </Router>
+
+  )
 }
 
-export default App;
+export default App
